@@ -1,10 +1,13 @@
+import { SVGElement } from "../elements/SVGElement";
 
+let _parentNode: SVGElement;
 export default class Style extends Object {
 
   [key: string]: string | Function;
 
-  constructor() {
+  constructor(parentNode: SVGElement) {
     super();
+    _parentNode = parentNode;
   }
 
 
@@ -14,6 +17,11 @@ export default class Style extends Object {
     } else {
       this[propertyName] = value;
     }
+    
+    if(Object.keys(this).length > 0){
+      _parentNode?.setAttribute("style", `${Object.keys(this).map(key => [key, this[key]].join(": ")).join("; ")};`);
+    }
+
   }
 
 

@@ -7,6 +7,7 @@ import { SVGTextElement } from "../elements/SVGTextElement";
 import { SVGLineElement } from "../elements/SVGLineElement";
 
 export interface SVGElementMap {
+  [index: string]: unknown;
   "circle": SVGCircleElement;
   "rect": SVGRectElement;
   "line": SVGLineElement;

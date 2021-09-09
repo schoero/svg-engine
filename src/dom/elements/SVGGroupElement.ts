@@ -19,7 +19,7 @@ export class SVGGroupElement extends SVGElement {
 
 }
 
-export interface SVGRectElement extends SVGElement,
+export interface SVGGroupElement extends SVGElement,
   Color,
   Display,
   Fill,
@@ -30,7 +30,7 @@ export interface SVGRectElement extends SVGElement,
   ShapeElements
 {};
 
-applyMixins(SVGRectElement, [ SVGElement,
+applyMixins(SVGGroupElement, [ SVGElement,
   Color,
   Display,
   Fill,

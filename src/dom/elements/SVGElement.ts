@@ -9,8 +9,8 @@ export class SVGElement extends Node {
   public tagName: string;
   public attributes: { [key:string]: string } = {};
   public childNodes: Array<Node> = [];
-  public classList: ClassList = new ClassList();
-  public style = new Style();
+  public classList: ClassList = new ClassList(this);
+  public style = new Style(this);
 
   constructor(tagName: string){
     super(NodeType.ELEMENT_NODE);
@@ -48,12 +48,14 @@ export class SVGElement extends Node {
   public get outerHTML(): string {
 
     const attributes = Object.keys(this.attributes).map(key => `${key}="${this.attributes[key]}"`).join(" ");
-    const classes = this.classList.length > 0 ? `class="${this.className}"` : "";
-    const styles = Object.keys(this.style).length > 0 ? `style="${Object.keys(this.style).map(key => [key, this.style[key]].join(":")).join("; ")}"` : "";
 
-    return `<${[this.tagName, classes, attributes, styles].filter(value => value !== "").join(" ")}>
-      ${this.innerHTML}
-    </${this.tagName}>`;
+    const tagNameAndAttributes = `${[this.tagName, attributes].filter(value => value !== "").join(" ")}`;
+
+    if(this.childNodes.length === 0){
+      return `<${tagNameAndAttributes} />`;
+    } else {
+      return `<${tagNameAndAttributes}>${this.innerHTML}</${this.tagName}>`;
+    }
 
   }
 
