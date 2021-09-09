@@ -1,5 +1,5 @@
 {
-  "name": "node-svg",
+  "name": "svg-engine",
   "version": "0.1.0",
   "description": "Create SVG files in Node.js",
   "type": "module",
@@ -8,9 +8,12 @@
     "build": "tsc",
     "test": "tsc && node test/index.js"
   },
+  "files": [
+    "lib"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/schoero/node-svg.git"
+    "url": "git+https://github.com/schoero/svg-engine.git"
   },
   "keywords": [
     "SVG",
@@ -19,9 +22,9 @@
   "author": "Roger Schönbächler",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/schoero/node-svg/issues"
+    "url": "https://github.com/schoero/svg-engine/issues"
   },
-  "homepage": "https://github.com/schoero/node-svg#readme",
+  "homepage": "https://github.com/schoero/svg-engine#readme",
   "devDependencies": {
     "typescript": "^4.4.2"
   }
