@@ -23,11 +23,6 @@ export class SVGElement extends Node {
   }
 
 
-  public set innerHTML(html: string) {
-    this.childNodes = [new TextNode(html)];
-  }
-
-
   public get innerHTML(): string {
 
     let html = "";
