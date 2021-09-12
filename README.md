@@ -1,2 +1,2 @@
-# node-svg
-Create SVG files using Node.js
+# svg-engine
+A small and lightweight, zero-dependency, library to create Scalable Vector Graphics (SVG) in Node.js, Deno and browsers.
