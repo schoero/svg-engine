@@ -4,6 +4,7 @@
   "description": "Create SVG files in Node.js",
   "type": "module",
   "module": "./lib/node/index.js",
+  "browser": "./lib/browser/index.js",
   "scripts": {
     "build": "tsc && tsc -p tsconfig.browser.json",
     "prepare": "ts-patch install -s",
