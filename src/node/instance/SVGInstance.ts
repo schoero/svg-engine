@@ -1,6 +1,6 @@
 import { createElement } from "../utils/createElement.js";
-import { SVGElement } from "../../dom/elements/SVGElement.js";
-import { SVGElementMap } from "../../dom/interfaces";
+import { SVGElement } from "../dom/elements/SVGElement.js";
+import { SVGElementMap } from "../dom/interfaces";
 
 export class SVGInstance {
 

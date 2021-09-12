@@ -1,12 +1,12 @@
-import { SVGCircleElement } from "../../dom/elements/SVGCircleElement.js";
-import { SVGLineElement } from "../../dom/elements/SVGLineElement.js";
-import { SVGPathElement } from "../../dom/elements/SVGPathElement.js";
-import { SVGRectElement } from "../../dom/elements/SVGRectElement.js";
-import { SVGSVGElement } from "../../dom/elements/SVGSVGElement.js";
-import { SVGElement } from "../../dom/elements/SVGElement.js";
-import { SVGElementMap } from "../../dom/interfaces"
-import { SVGGroupElement } from "../../dom/elements/SVGGroupElement.js";
-import { SVGTextElement } from "../../dom/elements/SVGTextElement.js";
+import { SVGCircleElement } from "../dom/elements/SVGCircleElement.js";
+import { SVGLineElement } from "../dom/elements/SVGLineElement.js";
+import { SVGPathElement } from "../dom/elements/SVGPathElement.js";
+import { SVGRectElement } from "../dom/elements/SVGRectElement.js";
+import { SVGSVGElement } from "../dom/elements/SVGSVGElement.js";
+import { SVGElement } from "../dom/elements/SVGElement.js";
+import { SVGElementMap } from "../dom/interfaces"
+import { SVGGroupElement } from "../dom/elements/SVGGroupElement.js";
+import { SVGTextElement } from "../dom/elements/SVGTextElement.js";
 
 export function createElement<K extends keyof SVGElementMap>(tagName: K): SVGElementMap[K] | SVGElement {
   if(tagName === "circle"){
