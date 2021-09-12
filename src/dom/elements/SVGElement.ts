@@ -40,6 +40,11 @@ export class SVGElement extends Node {
   }
 
 
+  public set innerHTML(text: string) {
+    this.childNodes = [new TextNode(text)];
+  }
+
+
   public get outerHTML(): string {
 
     const attributes = Object.keys(this.attributes).map(key => `${key}="${this.attributes[key]}"`).join(" ");
