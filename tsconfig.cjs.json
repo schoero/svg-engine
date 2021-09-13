@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./lib/node/cjs",
+    "module": "CommonJS",
+    "baseUrl": "./",
+    "paths": {
+      "@instance/*": ["src/node/instance/*"]
+    }
+  },
+  "include": ["src"],
+  "exclude": [
+    "node_modules",
+    "src/browser"
+  ]
+}
