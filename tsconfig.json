@@ -6,7 +6,7 @@
     "moduleResolution": "Node",
     "sourceMap": true,
     "declaration": true,
-    "outDir": "./lib/node",
+    "outDir": "./lib/node/esm",
     "strict": true,
     "noImplicitAny": false,
     "baseUrl": "./",

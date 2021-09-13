@@ -2,13 +2,26 @@
   "name": "svg-engine",
   "version": "0.1.0-alpha.0",
   "description": "Create SVG files in Node.js",
-  "type": "module",
-  "module": "./lib/node/index.js",
-  "browser": "./lib/browser/index.js",
+  "main": "./lib/node/cjs/index.js",
+  "module": "./lib/node/esm/index.js",
+  "browser": "./lib/browser/esm/index.js",
+  "exports": {
+    ".": {
+      "node": {
+        "require": "./lib/node/cjs/index.js",
+        "import": "./lib/node/esm/index.js"
+      },
+      "browser": {
+        "require": "./lib/browser/cjs/index.js",
+        "import": "./lib/browser/esm/index.js"
+      }
+    }
+  },
   "scripts": {
-    "build": "tsc && tsc -p tsconfig.browser.json",
+    "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && tsc -p tsconfig.browser.esm.json && tsc -p tsconfig.browser.cjs.json",
+    "postbuild": "sh fix-exports.sh",
     "prepare": "ts-patch install -s",
-    "test": "npm run build && node test/node/index.js"
+    "test": "npm run build && node test/node/cjs.js && node test/node/esm.mjs"
   },
   "files": [
     "lib"
@@ -29,6 +42,8 @@
   "homepage": "https://github.com/schoero/svg-engine#readme",
   "devDependencies": {
     "eslint": "^7.32.0",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
     "ts-patch": "^1.4.4",
     "typescript": "^4.4.3",
     "typescript-transform-paths": "^3.3.1"
