@@ -1,5 +1,4 @@
 import { SVGInstance } from "@instance/SVGInstance.js";
-import { SVGTSpanInstance } from "./SVGTSpanInstance.js";
 
 
 //-- Mixins
@@ -26,10 +25,10 @@ import { Font } from "../mixins/style-attributes/font.js";
 
 //-- Class
 
-export class SVGTextInstance extends SVGInstance {
+export class SVGTSpanInstance extends SVGInstance {
 
   constructor() {
-    super("text");
+    super("tspan");
   }
 
 
@@ -56,7 +55,7 @@ export class SVGTextInstance extends SVGInstance {
 
 //-- Apply mixins
 
-export interface SVGTextInstance extends SVGInstance,
+export interface SVGTSpanInstance extends SVGInstance,
   Color,
   Display,
   Fill,
@@ -70,7 +69,7 @@ export interface SVGTextInstance extends SVGInstance,
   Font
 {}
 
-applyMixins(SVGTextInstance, [
+applyMixins(SVGTSpanInstance, [
   Color,
   Display,
   Fill,
