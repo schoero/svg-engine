@@ -7,7 +7,7 @@ export class SVGInstance {
   public element: SVGElementMap[keyof SVGElementMap] | SVGElement;
   public childInstances: Array<SVGInstance> = [];
 
-  constructor(tagName: keyof SVGElementMap){
+  constructor(tagName: keyof SVGElementMap) {
     this.element = createElement(tagName);
   }
 
@@ -31,24 +31,24 @@ export class SVGInstance {
 
   public attr(): { [key: string]: string | number };
   public attr(attributeObject: { [key: string]: string | number }): this;
-  public attr(attributeName: string): string | number | null;
+  public attr(attributeName: string): string | number | null;
   public attr(attributeName: Array<string>): { [key: string]: string | number };
   public attr(attributeName: string, value: string | number): this;
-  public attr(attributeName: string, value?: string | number): string | null | this;
-  public attr(attributeNameOrAttributeObjectOrUndefined?: string | Array<string> | { [key: string]: string | number }, valueOrUndefined?: string | number): this | string | number | { [key: string]: string | number } | null {
-    
+  public attr(attributeName: string, value?: string | number): string | null | this;
+  public attr(attributeNameOrAttributeObjectOrUndefined?: string | Array<string> | { [key: string]: string | number }, valueOrUndefined?: string | number): this | string | number | { [key: string]: string | number } | null {
+
 
     //-- Convert numeric strings to numbers
 
     const attributes: { [key: string]: string | number } = Object.entries(this.element.attributes).reduce((previous, [key, value]) => ({ ...previous, [key]: isNaN(+value) ? value : +value }), {});
-    
+
     if(typeof attributeNameOrAttributeObjectOrUndefined === "undefined"){
       return attributes;
     } else if(typeof attributeNameOrAttributeObjectOrUndefined === "object"){
       if(Array.isArray(attributeNameOrAttributeObjectOrUndefined)){
         return Object.fromEntries(Object.entries(attributes).filter(([key, value]) => attributeNameOrAttributeObjectOrUndefined.includes(key)));
       } else {
-        Object.keys(attributeNameOrAttributeObjectOrUndefined).forEach((key) => { this.element.setAttribute(key, attributeNameOrAttributeObjectOrUndefined[key] + ""); });
+        Object.keys(attributeNameOrAttributeObjectOrUndefined).forEach(key => { this.element.setAttribute(key, attributeNameOrAttributeObjectOrUndefined[key] + ""); });
         return this;
       }
     } else if(typeof attributeNameOrAttributeObjectOrUndefined === "string"){

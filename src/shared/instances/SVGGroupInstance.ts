@@ -7,6 +7,7 @@ import { applyMixins } from "../mixins/index.js";
 
 // Permitted content
 import { ShapeInstances } from "../mixins/permitted-content/shapeInstances.js";
+import { SVGSVGInstance } from "./SVGSVGInstance.js";
 
 // Presentation attributes
 import { Color } from "../mixins/presentation-attributes/color.js";
@@ -22,7 +23,7 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 export class SVGGroupInstance extends SVGInstance {
 
-  constructor(){
+  constructor() {
     super("g");
   }
 
@@ -31,6 +32,21 @@ export class SVGGroupInstance extends SVGInstance {
     const group = new SVGGroupInstance();
     this.appendInstance(group);
     return group;
+  }
+
+
+  public addSVG(): SVGSVGInstance;
+  public addSVG(width: string | number, height: string | number): SVGSVGInstance;
+  public addSVG(width?: string | number, height?: string | number): SVGSVGInstance {
+    if(typeof width !== "undefined" && typeof height !== "undefined"){
+      const svg = new SVGSVGInstance(width, height);
+      this.appendInstance(svg);
+      return svg;
+    } else {
+      const svg = new SVGSVGInstance();
+      this.appendInstance(svg);
+      return svg;
+    }
   }
 
 }
@@ -47,7 +63,7 @@ export interface SVGGroupInstance extends SVGInstance,
   Stroke,
   VectorEffect,
   Visibility
-{};
+{}
 
 applyMixins(SVGGroupInstance, [
   ShapeInstances,

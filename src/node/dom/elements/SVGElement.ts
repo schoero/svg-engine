@@ -12,7 +12,7 @@ export class SVGElement extends Node {
   public classList: ClassList = new ClassList(this);
   public style = new Style(this);
 
-  constructor(tagName: string){
+  constructor(tagName: string) {
     super(NodeType.ELEMENT_NODE);
     this.tagName = tagName;
   }
@@ -27,10 +27,10 @@ export class SVGElement extends Node {
 
     let html = "";
 
-    for(let childNode of this.childNodes){
+    for(const childNode of this.childNodes){
       if(childNode.nodeType === NodeType.TEXT_NODE || childNode.nodeType === NodeType.COMMENT_NODE || childNode.nodeType === NodeType.CDATA_SECTION_NODE){
         html += childNode.nodeValue ?? "";
-      } else if (childNode.nodeType === NodeType.ELEMENT_NODE){
+      } else if(childNode.nodeType === NodeType.ELEMENT_NODE){
         html += (childNode as SVGElement).outerHTML;
       }
     }
@@ -88,7 +88,7 @@ export class SVGElement extends Node {
   public toggleAttribute(attributeName: string, force?: boolean): boolean {
     if(this.hasAttribute(attributeName)){
       if(force === true){
-        return true
+        return true;
       }
       this.removeAttribute(attributeName);
       return false;
@@ -128,7 +128,7 @@ export class SVGElement extends Node {
 
 
   public set id(id: string | null) {
-    if(id !== null){ 
+    if(id !== null){
       this.setAttribute("id", id);
     }
   }
@@ -169,8 +169,8 @@ export class SVGElement extends Node {
   public getElementsByClassName(className: string): Array<SVGElement> {
 
     const elements: Array<SVGElement> = [];
-    
-    for(let child of this.children){
+
+    for(const child of this.children){
       if(child.classList.contains(className)){
         elements.push(...[child, ...child.getElementsByClassName(className)]);
       }
@@ -185,7 +185,7 @@ export class SVGElement extends Node {
 
     const elements: Array<SVGElement> = [];
 
-    for(let child of this.children){
+    for(const child of this.children){
       if(child.tagName === tagName){
         elements.push(...[child, ...child.getElementsByTagName(tagName)]);
       }
@@ -198,7 +198,7 @@ export class SVGElement extends Node {
 
   public getElementById(id: string): SVGElement | null {
 
-    for(let child of this.children){
+    for(const child of this.children){
       if(child.id === id){
         return child;
       } else {

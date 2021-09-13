@@ -6,6 +6,7 @@ import { SVGGroupElement } from "../elements/SVGGroupElement";
 import { SVGPathElement } from "../elements/SVGPathElement";
 import { SVGTextElement } from "../elements/SVGTextElement";
 import { SVGLineElement } from "../elements/SVGLineElement";
+import { SVGTSpanElement } from "../elements/SVGTSpanElement";
 
 export interface SVGElementMap {
   "circle": SVGCircleElement;
@@ -14,6 +15,7 @@ export interface SVGElementMap {
   "g": SVGGroupElement;
   "path": SVGPathElement;
   "text": SVGTextElement;
+  "tspan": SVGTSpanElement;
   "svg": SVGSVGElement;
 }
 

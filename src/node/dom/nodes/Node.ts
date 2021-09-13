@@ -15,8 +15,18 @@ export class Node {
   public readonly nodeType: NodeType;
   private _nodeValue: string | null = null;
 
-  constructor(nodeType: NodeType){
+  constructor(nodeType: NodeType) {
     this.nodeType = nodeType;
+  }
+
+
+  public set textContent(text: string | null) {
+    this._nodeValue = text;
+  }
+
+
+  public get textContent(): string | null {
+    return this._nodeValue;
   }
 
 

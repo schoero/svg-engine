@@ -7,9 +7,9 @@ export function escapeHTMLEntities(html: string): string {
 }
 
 export function escapeCData(text: string): string {
-  return `<![CDATA[${text}]]>`
+  return `<![CDATA[${text}]]>`;
 }
 
-export function escapeComment (comment: string): string {
-  return `<!--${comment}-->`
+export function escapeComment(comment: string): string {
+  return `<!--${comment}-->`;
 }

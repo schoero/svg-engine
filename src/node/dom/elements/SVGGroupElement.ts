@@ -2,7 +2,7 @@
 import { SVGElement } from "./SVGElement.js";
 export class SVGGroupElement extends SVGElement {
 
-  constructor(){
+  constructor() {
     super("g");
   }
 

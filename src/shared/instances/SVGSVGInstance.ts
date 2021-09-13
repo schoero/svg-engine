@@ -7,7 +7,7 @@ import { applyMixins } from "../mixins/index.js";
 
 // Permitted content
 import { ShapeInstances } from "../mixins/permitted-content/shapeInstances.js";
-import { StructuralInstances } from "../mixins/permitted-content/structuralInstances.js";
+import { SVGGroupInstance } from "./SVGGroupInstance.js";
 
 // Presentation attributes
 import { Color } from "../mixins/presentation-attributes/color.js";
@@ -28,20 +28,50 @@ import { WidthHeight } from "../mixins/attributes/widthHeight.js";
 
 export class SVGSVGInstance extends SVGInstance {
 
-  constructor(){
+  constructor();
+  constructor(width: string | number, height: string | number);
+  constructor(width?: string | number, height?: string | number) {
     super("svg");
     this.attr("xmlns", "http://www.w3.org/2000/svg");
+    if(typeof width !== "undefined"){
+      this.width(width);
+    }
+    if(typeof height !== "undefined"){
+      this.height(height);
+    }
   }
-  
 
-  public viewBox(): { x: string | number, y: string | number, width: string | number, height: string | number } | null;
+
+  public addGroup(): SVGGroupInstance {
+    const group = new SVGGroupInstance();
+    this.appendInstance(group);
+    return group;
+  }
+
+
+  public addSVG(): SVGSVGInstance;
+  public addSVG(width: string | number, height: string | number): SVGSVGInstance;
+  public addSVG(width?: string | number, height?: string | number): SVGSVGInstance {
+    if(typeof width !== "undefined" && typeof height !== "undefined"){
+      const svg = new SVGSVGInstance(width, height);
+      this.appendInstance(svg);
+      return svg;
+    } else {
+      const svg = new SVGSVGInstance();
+      this.appendInstance(svg);
+      return svg;
+    }
+  }
+
+
+  public viewBox(): { x: string | number, y: string | number, width: string | number, height: string | number } | null;
   public viewBox(x: string | number, y: string | number, width: string | number, height: string | number): this;
-  public viewBox(x? : string | number, y? : string | number, width? : string | number, height? : string | number): { x: string | number, y: string | number, width: string | number, height: string | number } | this | null {
+  public viewBox(x? : string | number, y? : string | number, width? : string | number, height? : string | number): { x: string | number, y: string | number, width: string | number, height: string | number } | this | null {
     if(typeof x === "undefined"){
       const viewBox = this.attr("viewBox");
       if(typeof viewBox === "string"){
         const [x, y, width, height] = viewBox.split(" ");
-        return { 
+        return {
           x: isNaN(+x) ? x : +x,
           y: isNaN(+y) ? y : +y,
           width: isNaN(+width) ? width : +width,
@@ -50,9 +80,9 @@ export class SVGSVGInstance extends SVGInstance {
       }
       return null;
     } else if(
-        (typeof x === "string" || typeof x === "number") && 
-        (typeof y === "string" || typeof y === "number") && 
-        (typeof width === "string" || typeof width === "number") && 
+      (typeof x === "string" || typeof x === "number") &&
+        (typeof y === "string" || typeof y === "number") &&
+        (typeof width === "string" || typeof width === "number") &&
         (typeof height === "string" || typeof height === "number")){
       this.attr("viewBox", `${x} ${y} ${width} ${height}`);
       return this;
@@ -67,7 +97,6 @@ export class SVGSVGInstance extends SVGInstance {
 
 export interface SVGSVGInstance extends SVGInstance,
   ShapeInstances,
-  StructuralInstances,
   Color,
   Display,
   Fill,
@@ -78,11 +107,10 @@ export interface SVGSVGInstance extends SVGInstance,
   PreserveAspectRatio,
   XYPositioning,
   WidthHeight
-{};
+{}
 
 applyMixins(SVGSVGInstance, [
   ShapeInstances,
-  StructuralInstances,
   Color,
   Display,
   Fill,

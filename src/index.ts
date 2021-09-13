@@ -2,8 +2,8 @@ import { SVGSVGInstance } from "./shared/instances/SVGSVGInstance.js";
 
 
 export class SVG extends SVGSVGInstance {
-  
-  constructor(){
+
+  constructor() {
     super();
   }
 

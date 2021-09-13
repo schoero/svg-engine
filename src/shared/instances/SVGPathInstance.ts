@@ -19,7 +19,7 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 export class SVGPathInstance extends SVGInstance {
 
-  constructor(){
+  constructor() {
     super("path");
   }
 
@@ -116,7 +116,7 @@ export interface SVGPathInstance extends SVGInstance,
   Stroke,
   VectorEffect,
   Visibility
-{};
+{}
 
 applyMixins(SVGPathInstance, [
   Color,

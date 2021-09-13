@@ -22,7 +22,7 @@ import { CXCYPositioning } from "../mixins/attributes/cxcyPositioning.js";
 
 export class SVGCircleInstance extends SVGInstance {
 
-  constructor(){
+  constructor() {
     super("circle");
   }
 
@@ -30,7 +30,7 @@ export class SVGCircleInstance extends SVGInstance {
   public radius(): string | number | null;
   public radius(radius: string | number): this;
   public radius(radius?: string | number): string | number | this | null {
-    if(typeof radius === "string" || typeof radius === "number") {
+    if(typeof radius === "string" || typeof radius === "number"){
       this.attr("r", radius);
       return this;
     }
@@ -51,7 +51,7 @@ export interface SVGCircleInstance extends SVGInstance,
   VectorEffect,
   Visibility,
   CXCYPositioning
-{};
+{}
 
 applyMixins(SVGCircleInstance, [
   Color,
