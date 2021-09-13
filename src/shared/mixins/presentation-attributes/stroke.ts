@@ -2,9 +2,23 @@ import { SVGInstance } from "@instance/SVGInstance.js";
 
 export class Stroke extends SVGInstance {
 
-  public stroke(): string | null;
-  public stroke(color: string): this;
-  public stroke(color?: string): string | this | null {
+  public stroke(): this;
+  public stroke(width: string | number): this;
+  public stroke(width: string | number, style: "solid" | "dashed"): this;
+  public stroke(width: string | number, style: "solid" | "dashed", color: string): this;
+  public stroke(width: string | number = 1, style: "solid" | "dashed" = "solid", color: string = "currentColor"): this {
+    this.strokeWidth(width);
+    this.strokeColor(color);
+    if(style === "dashed"){
+      this.strokeDasharray(3);
+    }
+    return this;
+  }
+
+
+  public strokeColor(): string | null;
+  public strokeColor(color: string): this;
+  public strokeColor(color?: string): string | this | null {
     if(typeof color === "undefined"){
       const color = this.attr("stroke");
       return typeof color === "string" ? color : null;
@@ -16,10 +30,20 @@ export class Stroke extends SVGInstance {
   }
 
 
+  public dash(): this;
+  public dash(dash: string | number): this;
+  public dash(dash: string | number, color: string): this;
+  public dash(dash: string | number = 3, color: string = "currentColor"): this {
+    this.strokeDasharray(dash);
+    this.strokeColor(color);
+    return this;
+  }
+
+
   public strokeDasharray(): string | number | Array<string | number> | null;
-  public strokeDasharray(dash: string | number, gap?: string | number): this;
+  public strokeDasharray(dash: string | number, gap?: string | number): this;
   public strokeDasharray(dashGapArray: Array<string | number>): this;
-  public strokeDasharray(dashGapArrayOrUndefined?: Array<string | number> | string | number, gap?: string | number): string | number | Array<string | number> | this | null {
+  public strokeDasharray(dashGapArrayOrUndefined?: Array<string | number> | string | number, gap?: string | number): string | number | Array<string | number> | this | null {
     if(typeof dashGapArrayOrUndefined === "undefined"){
       const dashGapString = this.attr("stroke-dasharray");
 
@@ -44,12 +68,9 @@ export class Stroke extends SVGInstance {
   }
 
 
-  public dash = this.strokeDasharray;
-
-
   public strokeDashoffset(): string | number | null;
   public strokeDashoffset(offset: string | number): this;
-  public strokeDashoffset(offset?: string | number): string | number | this | null {
+  public strokeDashoffset(offset?: string | number): string | number | this | null {
     if(typeof offset === "string" || typeof offset === "number"){
       this.attr("stroke-dashoffset", offset);
       return this;
@@ -59,8 +80,8 @@ export class Stroke extends SVGInstance {
 
 
   public strokeLinecap(): string | null;
-  public strokeLinecap(cap: "butt" | "round" | "square"): this;
-  public strokeLinecap(cap?: "butt" | "round" | "square"): string | this | null {
+  public strokeLinecap(cap: "butt" | "round" | "square"): this;
+  public strokeLinecap(cap?: "butt" | "round" | "square"): string | this | null {
     if(typeof cap === "undefined"){
       const cap = this.attr("stroke-linecap");
       return typeof cap === "string" ? cap : null;
@@ -74,7 +95,7 @@ export class Stroke extends SVGInstance {
 
   public strokeLinejoin(): string | null;
   public strokeLinejoin(join: "arcs" | "bevel" | "miter" | "miter-clip" | "round"): this;
-  public strokeLinejoin(join?: "arcs" | "bevel" | "miter" | "miter-clip" | "round"): string | this | null {
+  public strokeLinejoin(join?: "arcs" | "bevel" | "miter" | "miter-clip" | "round"): string | this | null {
     if(typeof join === "undefined"){
       const join = this.attr("stroke-linejoin");
       return typeof join === "string" ? join : null;
@@ -88,7 +109,7 @@ export class Stroke extends SVGInstance {
 
   public strokeMiterlimit(): number | null;
   public strokeMiterlimit(limit: number): this;
-  public strokeMiterlimit(limit?: number): number | this | null {
+  public strokeMiterlimit(limit?: number): number | this | null {
     if(typeof limit === "undefined"){
       const limit = this.attr("stroke-miterlimit");
       return typeof limit === "number" ? limit : null;
@@ -100,9 +121,9 @@ export class Stroke extends SVGInstance {
   }
 
 
-  public strokeOpacity(): string | number | null;
-  public strokeOpacity(opacity: string | number): this;
-  public strokeOpacity(opacity?: string | number): string | number | this | null {
+  public strokeOpacity(): string | number | null;
+  public strokeOpacity(opacity: string | number): this;
+  public strokeOpacity(opacity?: string | number): string | number | this | null {
     if(typeof opacity === "string" || typeof opacity === "number"){
       this.attr("stroke-opacity", opacity);
       return this;
@@ -113,7 +134,7 @@ export class Stroke extends SVGInstance {
 
   public strokeWidth(): string | number | null;
   public strokeWidth(width: string | number): this;
-  public strokeWidth(width?: string | number): string | number | this | null {
+  public strokeWidth(width?: string | number): string | number | this | null {
     if(typeof width === "string" || typeof width === "number"){
       this.attr("stroke-width", width);
       return this;
