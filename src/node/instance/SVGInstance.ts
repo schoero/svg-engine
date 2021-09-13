@@ -19,6 +19,17 @@ export class SVGInstance {
   }
 
 
+  public id(): string | null;
+  public id(id: string): this;
+  public id(id?: string): string | this | null {
+    if(typeof id === "string"){
+      this.element.id = id;
+      return this;
+    }
+    return this.element.id;
+  }
+
+
   public get innerHTML(): string {
     return this.element.innerHTML;
   }
@@ -26,6 +37,35 @@ export class SVGInstance {
 
   public get outerHTML(): string {
     return this.element.outerHTML;
+  }
+
+
+  public addClass(className: string): this;
+  public addClass(classNames: Array<string>): this;
+  public addClass(classNameOrClassNames: string | Array<string>): this {
+    if(typeof classNameOrClassNames === "string"){
+      this.element.classList.add(classNameOrClassNames);
+    } else if(Array.isArray(classNameOrClassNames)){
+      classNameOrClassNames.forEach(className => this.element.classList.add(className));
+    }
+    return this;
+  }
+
+
+  public removeClass(className: string): this;
+  public removeClass(classNames: Array<string>): this;
+  public removeClass(classNameOrClassNames: string | Array<string>): this {
+    if(typeof classNameOrClassNames === "string"){
+      this.element.classList.remove(classNameOrClassNames);
+    } else if(Array.isArray(classNameOrClassNames)){
+      classNameOrClassNames.forEach(className => this.element.classList.remove(className));
+    }
+    return this;
+  }
+
+
+  public hasClass(className: string): boolean {
+    return this.element.classList.contains(className);
   }
 
 
@@ -62,6 +102,12 @@ export class SVGInstance {
 
     return null;
 
+  }
+
+
+  public removeAttr(attributeName: string): this {
+    this.element.removeAttribute(attributeName);
+    return this;
   }
 
 }

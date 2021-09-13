@@ -31,14 +31,16 @@ export class SVGSVGInstance extends SVGInstance {
   constructor();
   constructor(width: string | number, height: string | number);
   constructor(width?: string | number, height?: string | number) {
+
     super("svg");
-    this.attr("xmlns", "http://www.w3.org/2000/svg");
+
     if(typeof width !== "undefined"){
       this.width(width);
     }
     if(typeof height !== "undefined"){
       this.height(height);
     }
+
   }
 
 

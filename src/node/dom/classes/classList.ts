@@ -9,7 +9,7 @@ export default class ClassList extends Array {
   }
 
 
-  private _updateAttribute() {
+  public __updateAttribute() {
     if(this.length > 0){
       _parentNode.setAttribute("class", this.value);
     } else {
@@ -20,13 +20,13 @@ export default class ClassList extends Array {
 
   public add(className: string): void {
     this.unshift(className);
-    this._updateAttribute();
+    this.__updateAttribute();
   }
 
 
   public remove(className: string): void {
     this.splice(this.indexOf(className), 1);
-    this._updateAttribute();
+    this.__updateAttribute();
   }
 
 
@@ -55,7 +55,7 @@ export default class ClassList extends Array {
   public set value(value: string) {
     this.splice(0, this.length);
     this.push(...value.split(" "));
-    this._updateAttribute();
+    this.__updateAttribute();
   }
 
 
