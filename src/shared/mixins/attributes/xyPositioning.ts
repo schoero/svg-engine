@@ -16,10 +16,10 @@ export class XYPositioning extends SVGInstance {
   }
 
 
-  public x(): string | null;
+  public x(): string | null;
   public x(x: string | number): this;
   public x(x?: string | number) {
-    if(typeof x === "string" || typeof x === "number"){
+    if(typeof x === "string" || typeof x === "number"){
       this.attr("x", x);
       return this;
     }
@@ -28,9 +28,9 @@ export class XYPositioning extends SVGInstance {
 
 
   public y(): string | null;
-  public y(y: string | number): this;
+  public y(y: string | number): this;
   public y(y?: string | number) {
-    if(typeof y === "string" || typeof y === "number"){
+    if(typeof y === "string" || typeof y === "number"){
       this.attr("y", y);
       return this;
     }

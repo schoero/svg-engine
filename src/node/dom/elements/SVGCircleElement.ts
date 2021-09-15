@@ -2,7 +2,7 @@ import { SVGElement } from "./SVGElement.js";
 
 export class SVGCircleElement extends SVGElement {
 
-  constructor(){
+  constructor() {
     super("circle");
   }
 

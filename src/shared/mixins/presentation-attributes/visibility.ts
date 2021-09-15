@@ -4,7 +4,7 @@ export class Visibility extends SVGInstance {
 
   public visibility(): string | null;
   public visibility(visibility: "visible" | "hidden"): this;
-  public visibility(visibility?: "visible" | "hidden"): string | this | null {
+  public visibility(visibility?: "visible" | "hidden"): string | this | null {
     if(typeof visibility === "undefined"){
       const visibility = this.attr("visibility");
       return typeof visibility === "string" ? visibility : null;
@@ -14,5 +14,5 @@ export class Visibility extends SVGInstance {
     }
     return null;
   }
-  
+
 }

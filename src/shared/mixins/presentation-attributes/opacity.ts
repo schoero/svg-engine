@@ -4,7 +4,7 @@ export class Opacity extends SVGInstance {
 
   public opacity(): number | null;
   public opacity(opacity: number): this;
-  public opacity(opacity?: number): number | this | null {
+  public opacity(opacity?: number): number | this | null {
     if(typeof opacity === "undefined"){
       const opacity = this.attr("opacity");
       return typeof opacity === "number" ? opacity : null;

@@ -23,7 +23,7 @@ import { WidthHeight } from "../mixins/attributes/widthHeight.js";
 
 export class SVGRectInstance extends SVGInstance {
 
-  constructor(){
+  constructor() {
     super("rect");
   }
 
@@ -31,7 +31,7 @@ export class SVGRectInstance extends SVGInstance {
   public borderRadius(): string | number | null;
   public borderRadius(radius: string | number): this;
   public borderRadius(radius?: string | number): string | number | this | null {
-    if(typeof radius === "string" || typeof radius === "number") {
+    if(typeof radius === "string" || typeof radius === "number"){
       this.attr("rx", radius);
       this.attr("ry", radius);
       return this;
@@ -54,7 +54,7 @@ export interface SVGRectInstance extends SVGInstance,
   Visibility,
   XYPositioning,
   WidthHeight
-{};
+{}
 
 applyMixins(SVGRectInstance, [
   Color,

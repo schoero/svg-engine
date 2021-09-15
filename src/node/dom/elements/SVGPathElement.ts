@@ -2,7 +2,7 @@ import { SVGElement } from "./SVGElement.js";
 
 export class SVGPathElement extends SVGElement {
 
-  constructor(d?: string){
+  constructor(d?: string) {
 
     super("path");
 

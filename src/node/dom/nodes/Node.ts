@@ -13,10 +13,77 @@ export enum NodeType {
 export class Node {
 
   public readonly nodeType: NodeType;
-  private _nodeValue: string | null = null;
 
-  constructor(nodeType: NodeType){
+  public childNodes: Array<Node> = [];
+  private _nodeValue: string | null = null;
+  private _parentNode: Node | null = null;
+
+  constructor(nodeType: NodeType) {
     this.nodeType = nodeType;
+  }
+
+
+  public get firstChild(): Node | null {
+    return this.childNodes[0] ?? null;
+  }
+
+
+  public get lastChild(): Node | null {
+    return this.childNodes[this.childNodes.length - 1] ?? null;
+  }
+
+
+  public get nextSibling(): Node | null {
+    if(this.parentNode !== null){
+      const index = this.parentNode.childNodes.indexOf(this);
+      if(index !== -1){
+        return this.parentNode.childNodes[index + 1] ?? null;
+      }
+    }
+    return null;
+  }
+
+
+  public get previousSibling(): Node | null {
+    if(this.parentNode !== null){
+      const index = this.parentNode.childNodes.indexOf(this);
+      if(index !== -1){
+        return this.parentNode.childNodes[index - 1] ?? null;
+      }
+    }
+    return null;
+  }
+
+
+  public hasChildNodes(): boolean {
+    return this.childNodes.length > 0;
+  }
+
+
+  public appendChild<T extends Node>(node: T): T {
+    this.childNodes.push(node);
+    node.__parentNode = this;
+    return node;
+  }
+
+
+  private set __parentNode(parent: Node | null) {
+    this._parentNode = parent;
+  }
+
+
+  public get parentNode(): Node | null {
+    return this._parentNode;
+  }
+
+
+  public set textContent(text: string | null) {
+    this._nodeValue = text;
+  }
+
+
+  public get textContent(): string | null {
+    return this._nodeValue;
   }
 
 

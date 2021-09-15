@@ -1,7 +1,7 @@
 import { SVGElement } from "./SVGElement.js";
 export class SVGSVGElement extends SVGElement {
 
-  constructor(){
+  constructor() {
     super("svg");
   }
 

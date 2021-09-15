@@ -19,15 +19,15 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 export class SVGLineInstance extends SVGInstance {
 
-  constructor(){
+  constructor() {
     super("line");
   }
-  
-  
+
+
   public x1(): string | number | null;
   public x1(x1: string | number): this;
   public x1(x1?: string | number): string | number | this | null {
-    if(typeof x1 === "string" || typeof x1 === "number") {
+    if(typeof x1 === "string" || typeof x1 === "number"){
       this.attr("x1", x1);
       return this;
     }
@@ -38,7 +38,7 @@ export class SVGLineInstance extends SVGInstance {
   public y1(): string | number | null;
   public y1(y1: string | number): this;
   public y1(y1?: string | number): string | number | this | null {
-    if(typeof y1 === "string" || typeof y1 === "number") {
+    if(typeof y1 === "string" || typeof y1 === "number"){
       this.attr("y1", y1);
       return this;
     }
@@ -49,7 +49,7 @@ export class SVGLineInstance extends SVGInstance {
   public x2(): string | number | null;
   public x2(x2: string | number): this;
   public x2(x2?: string | number): string | number | this | null {
-    if(typeof x2 === "string" || typeof x2 === "number") {
+    if(typeof x2 === "string" || typeof x2 === "number"){
       this.attr("x2", x2);
       return this;
     }
@@ -60,7 +60,7 @@ export class SVGLineInstance extends SVGInstance {
   public y2(): string | number | null;
   public y2(y2: string | number): this;
   public y2(y2?: string | number): string | number | this | null {
-    if(typeof y2 === "string" || typeof y2 === "number") {
+    if(typeof y2 === "string" || typeof y2 === "number"){
       this.attr("y2", y2);
       return this;
     }
@@ -80,7 +80,7 @@ export interface SVGLineInstance extends SVGInstance,
   Stroke,
   VectorEffect,
   Visibility
-{};
+{}
 
 applyMixins(SVGLineInstance, [
   Color,

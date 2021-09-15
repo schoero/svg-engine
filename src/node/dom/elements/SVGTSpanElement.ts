@@ -1,9 +1,8 @@
-
 import { SVGElement } from "./SVGElement.js";
-export class SVGGroupElement extends SVGElement {
+export class SVGTSpanElement extends SVGElement {
 
   constructor() {
-    super("g");
+    super("tspan");
   }
 
 }
