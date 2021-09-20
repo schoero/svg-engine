@@ -15,6 +15,21 @@ export class TextAttributes extends SVGInstance {
   }
 
 
+  public textAlign(): string | null;
+  public textAlign(position: "left" | "center" | "right"): this;
+  public textAlign(position?: "left" | "center" | "right"): string | this | null {
+    if(position === "left"){
+      return this.textAnchor("start");
+    } else if(position === "center"){
+      return this.textAnchor("middle");
+    } else if(position === "right"){
+      return this.textAnchor("end");
+    } else {
+      return this.textAnchor() ?? "left";
+    }
+  }
+
+
   public textAnchor(): string | null;
   public textAnchor(textAnchor: "start" | "middle" | "end"): this;
   public textAnchor(textAnchor?: "start" | "middle" | "end"): string | this | null {
