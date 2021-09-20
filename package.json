@@ -1,6 +1,6 @@
 {
   "name": "svg-engine",
-  "version": "0.1.0-alpha.2",
+  "version": "0.1.0",
   "description": "Create SVG files in Node.js",
   "main": "./lib/node/cjs/index.js",
   "module": "./lib/node/esm/index.js",
