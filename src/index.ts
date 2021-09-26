@@ -6,18 +6,9 @@ import { SVGPathInstance } from "./shared/instances/SVGPathInstance.js";
 import { SVGRectInstance } from "./shared/instances/SVGRectInstance.js";
 import { SVGTextInstance } from "./shared/instances/SVGTextInstance.js";
 import { SVGTSpanInstance } from "./shared/instances/SVGTSpanInstance.js";
+import { SVG } from "./shared/exports/svg.js";
 
-export * from "./shared/utils/calc.js";
-
-
-export class SVG extends SVGSVGInstance {
-
-  constructor() {
-    super();
-    this.attr("xmlns", "http://www.w3.org/2000/svg");
-  }
-
-}
+export * from "./shared/exports/calc.js";
 
 export {
   SVGSVGInstance,
@@ -27,7 +18,8 @@ export {
   SVGPathInstance,
   SVGRectInstance,
   SVGTextInstance,
-  SVGTSpanInstance
+  SVGTSpanInstance,
+  SVG
 };
 
 export default SVG;
