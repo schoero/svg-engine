@@ -1,6 +1,7 @@
 import { createElement } from "../utils/createElement.js";
 import { SVGElement } from "../dom/elements/SVGElement.js";
 import { SVGElementMap } from "../dom/interfaces";
+import { convertNamedNodeMapToObject } from "../../shared/utils/functions.js";
 
 export class SVGInstance {
 
@@ -80,7 +81,7 @@ export class SVGInstance {
 
     //-- Convert numeric strings to numbers
 
-    const attributes: { [key: string]: string | number } = Object.entries(this.element.attributes).reduce((previous, [key, value]) => ({ ...previous, [key]: isNaN(+value) ? value : +value }), {});
+    const attributes: { [key: string]: string | number } = Object.entries(convertNamedNodeMapToObject(this.element.attributes)).reduce((previous, [key, value]) => ({ ...previous, [value.name]: isNaN(+value.value) ? value.value : +value.value }), {});
 
     if(typeof attributeNameOrAttributeObjectOrUndefined === "undefined"){
       return attributes;
