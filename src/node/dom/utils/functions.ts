@@ -6,9 +6,11 @@ export function escapeHTMLEntities(html: string): string {
     .replace(/'/g, "&#039;");
 }
 
+
 export function escapeCData(text: string): string {
   return `<![CDATA[${text}]]>`;
 }
+
 
 export function escapeComment(comment: string): string {
   return `<!--${comment}-->`;

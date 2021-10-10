@@ -18,4 +18,3 @@ export interface SVGElementMap {
   "tspan": SVGTSpanElement;
   "svg": SVGSVGElement;
 }
-

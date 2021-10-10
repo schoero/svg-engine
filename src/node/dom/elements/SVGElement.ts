@@ -1,15 +1,17 @@
 import ClassList from "../classes/classList.js";
+import NamedNodeMap from "../classes/namedNodeMap.js";
 import Style from "../classes/style.js";
 import { SVGElementMap } from "../interfaces/index.js";
 
 import { Node, NodeType } from "../nodes/Node.js";
 import { TextNode } from "../nodes/TextNode.js";
+import { convertNamedNodeMapToObject } from "../../../shared/utils/functions.js";
 import { attributeRegex, classRegex, idRegex, tagRegex } from "../utils/regex.js";
 
 export class SVGElement extends Node {
 
   public tagName: string;
-  public attributes: { [key:string]: string } = {};
+  public attributes: NamedNodeMap = new NamedNodeMap();
   public classList: ClassList = new ClassList(this);
   public style = new Style(this);
 
@@ -91,7 +93,7 @@ export class SVGElement extends Node {
 
   public get outerHTML(): string {
 
-    const attributes = Object.keys(this.attributes).map(key => `${key}="${this.attributes[key]}"`).join(" ");
+    const attributes = Object.keys(convertNamedNodeMapToObject(this.attributes)).map(key => `${key}="${convertNamedNodeMapToObject(this.attributes)[key].value}"`).join(" ");
 
     const tagNameAndAttributes = `${[this.tagName, attributes].filter(value => value !== "").join(" ")}`;
 
@@ -115,17 +117,17 @@ export class SVGElement extends Node {
 
 
   public setAttribute(attributeName: string, value: string): void {
-    this.attributes[attributeName] = value;
+    this.attributes.setNamedItem(attributeName, value);
   }
 
 
   public getAttribute(attributeName: string): string | null {
-    return this.attributes[attributeName] ?? null;
+    return this.attributes.getNamedItem(attributeName)?.value ?? null;
   }
 
 
   public removeAttribute(attributeName: string): void {
-    delete this.attributes[attributeName];
+    this.attributes.removeNamedItem(attributeName);
   }
 
 
@@ -147,7 +149,7 @@ export class SVGElement extends Node {
 
 
   public hasAttribute(attributeName: string): boolean {
-    return this.attributes[attributeName] !== undefined;
+    return convertNamedNodeMapToObject(this.attributes)[attributeName] !== undefined;
   }
 
 
@@ -403,7 +405,7 @@ export class SVGElement extends Node {
           //-- Check only attribute name
 
           if(attributeString.includes("=") !== true){
-            if(this.attributes[attributeString] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[attributeString] === undefined){
               continue selectorChainLoop;
             }
           }
@@ -413,7 +415,7 @@ export class SVGElement extends Node {
 
           if(whitespaceSelectorArray.length === 2){
 
-            if(this.attributes[whitespaceSelectorArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[whitespaceSelectorArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -428,11 +430,11 @@ export class SVGElement extends Node {
             let valueFound = false;
             for(const attributeListEntry of attributeList){
               if(attributeData.caseInSensitive === true){
-                if(this.attributes[attributeData.name].toLowerCase() === attributeListEntry.toLowerCase()){
+                if(convertNamedNodeMapToObject(this.attributes)[attributeData.name].value.toLowerCase() === attributeListEntry.toLowerCase()){
                   valueFound = true;
                 }
               } else {
-                if(this.attributes[attributeData.name] === attributeListEntry){
+                if(convertNamedNodeMapToObject(this.attributes)[attributeData.name].value === attributeListEntry){
                   valueFound = true;
                 }
               }
@@ -444,7 +446,7 @@ export class SVGElement extends Node {
 
           } else if(beginFollowedByHyphenArray.length === 2){
 
-            if(this.attributes[beginFollowedByHyphenArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[beginFollowedByHyphenArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -455,18 +457,18 @@ export class SVGElement extends Node {
             }
 
             if(attributeValue.caseInSensitive === true){
-              if(this.attributes[attributeValue.name].toLowerCase().startsWith(attributeValue.value.toLowerCase() + "-") !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.toLowerCase().startsWith(attributeValue.value.toLowerCase() + "-") !== true){
                 continue selectorChainLoop;
               }
             } else {
-              if(this.attributes[beginFollowedByHyphenArray[0]].startsWith(attributeValue.value + "-") !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[beginFollowedByHyphenArray[0]].value.startsWith(attributeValue.value + "-") !== true){
                 continue selectorChainLoop;
               }
             }
 
           } else if(prefixedByValueArray.length === 2){
 
-            if(this.attributes[prefixedByValueArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[prefixedByValueArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -477,18 +479,18 @@ export class SVGElement extends Node {
             }
 
             if(attributeValue.caseInSensitive === true){
-              if(this.attributes[attributeValue.name].toLowerCase().startsWith(attributeValue.value.toLowerCase()) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.toLowerCase().startsWith(attributeValue.value.toLowerCase()) !== true){
                 continue selectorChainLoop;
               }
             } else {
-              if(this.attributes[attributeValue.name].startsWith(attributeValue.value) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.startsWith(attributeValue.value) !== true){
                 continue selectorChainLoop;
               }
             }
 
           } else if(suffixedByValueArray.length === 2){
 
-            if(this.attributes[suffixedByValueArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[suffixedByValueArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -499,18 +501,18 @@ export class SVGElement extends Node {
             }
 
             if(attributeValue.caseInSensitive === true){
-              if(this.attributes[attributeValue.name].toLowerCase().endsWith(attributeValue.value.toLowerCase()) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.toLowerCase().endsWith(attributeValue.value.toLowerCase()) !== true){
                 continue selectorChainLoop;
               }
             } else {
-              if(this.attributes[attributeValue.name].endsWith(attributeValue.value) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.endsWith(attributeValue.value) !== true){
                 continue selectorChainLoop;
               }
             }
 
           } else if(containsValueArray.length === 2){
 
-            if(this.attributes[containsValueArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[containsValueArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -521,18 +523,18 @@ export class SVGElement extends Node {
             }
 
             if(attributeValue.caseInSensitive === true){
-              if(this.attributes[attributeValue.name].toLowerCase().includes(attributeValue.value.toLowerCase()) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.toLowerCase().includes(attributeValue.value.toLowerCase()) !== true){
                 continue selectorChainLoop;
               }
             } else {
-              if(this.attributes[attributeValue.name].includes(attributeValue.value) !== true){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.includes(attributeValue.value) !== true){
                 continue selectorChainLoop;
               }
             }
 
           } else if(exactValueArray.length === 2){
 
-            if(this.attributes[exactValueArray[0]] === undefined){
+            if(convertNamedNodeMapToObject(this.attributes)[exactValueArray[0]] === undefined){
               continue selectorChainLoop;
             }
 
@@ -543,11 +545,11 @@ export class SVGElement extends Node {
             }
 
             if(attributeValue.caseInSensitive === true){
-              if(this.attributes[attributeValue.name].toLowerCase() !== attributeValue.value.toLowerCase()){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value.toLowerCase() !== attributeValue.value.toLowerCase()){
                 continue selectorChainLoop;
               }
             } else {
-              if(this.attributes[attributeValue.name] !== attributeValue.value){
+              if(convertNamedNodeMapToObject(this.attributes)[attributeValue.name].value !== attributeValue.value){
                 continue selectorChainLoop;
               }
             }
