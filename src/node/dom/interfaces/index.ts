@@ -9,6 +9,7 @@ import { SVGLineElement } from "../elements/SVGLineElement";
 import { SVGTSpanElement } from "../elements/SVGTSpanElement";
 import { SVGDefsElement } from "../elements/SVGDefsElement";
 import { SVGLinearGradientElement } from "../elements/SVGLinearGradientElement";
+import { SVGRadialGradientElement } from "../elements/SVGRadialGradientElement";
 import { SVGStopElement } from "../elements/SVGStopElement";
 
 export interface SVGElementMap {
@@ -22,5 +23,6 @@ export interface SVGElementMap {
   "svg": SVGSVGElement;
   "defs": SVGDefsElement;
   "linearGradient": SVGLinearGradientElement;
+  "radialGradient": SVGRadialGradientElement;
   "stop": SVGStopElement;
 }
