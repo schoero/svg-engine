@@ -1,6 +1,5 @@
 import { SVGInstance } from "@instance/SVGInstance.js";
 
-
 //-- Mixins
 
 import { applyMixins } from "../mixins/index.js";
@@ -22,8 +21,8 @@ import { CXCYPositioning } from "../mixins/attributes/cxcyPositioning.js";
 
 export class SVGCircleInstance extends SVGInstance {
 
-  constructor() {
-    super("circle");
+  constructor(_parent?: SVGInstance) {
+    super("circle", _parent);
   }
 
 

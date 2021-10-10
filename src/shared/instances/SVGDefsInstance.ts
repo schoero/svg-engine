@@ -7,7 +7,8 @@ import { applyMixins } from "../mixins/index.js";
 
 // Permitted content
 import { ShapeInstances } from "../mixins/permitted-content/shapeInstances.js";
-import { SVGSVGInstance } from "./SVGSVGInstance.js";
+import { StructuralInstances } from "../mixins/permitted-content/structuralInstances.js";
+import { GradientInstances } from "../mixins/permitted-content/gradientInstances.js";
 
 // Presentation attributes
 import { Color } from "../mixins/presentation-attributes/color.js";
@@ -21,32 +22,10 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 //-- Class
 
-export class SVGGroupInstance extends SVGInstance {
+export class SVGDefsInstance extends SVGInstance {
 
   constructor(_parent?: SVGInstance) {
-    super("g", _parent);
-  }
-
-
-  public addGroup(): SVGGroupInstance {
-    const group = new SVGGroupInstance(this);
-    this.appendInstance(group);
-    return group;
-  }
-
-
-  public addSVG(): SVGSVGInstance;
-  public addSVG(width: string | number, height: string | number): SVGSVGInstance;
-  public addSVG(width?: string | number, height?: string | number): SVGSVGInstance {
-    if(typeof width !== "undefined" && typeof height !== "undefined"){
-      const svg = new SVGSVGInstance(width, height);
-      this.appendInstance(svg);
-      return svg;
-    } else {
-      const svg = new SVGSVGInstance();
-      this.appendInstance(svg);
-      return svg;
-    }
+    super("defs", _parent);
   }
 
 }
@@ -54,8 +33,10 @@ export class SVGGroupInstance extends SVGInstance {
 
 //-- Apply mixins
 
-export interface SVGGroupInstance extends SVGInstance,
+export interface SVGDefsInstance extends SVGInstance,
   ShapeInstances,
+  StructuralInstances,
+  GradientInstances,
   Color,
   Display,
   Fill,
@@ -65,8 +46,10 @@ export interface SVGGroupInstance extends SVGInstance,
   Visibility
 {}
 
-applyMixins(SVGGroupInstance, [
+applyMixins(SVGDefsInstance, [
   ShapeInstances,
+  StructuralInstances,
+  GradientInstances,
   Color,
   Display,
   Fill,

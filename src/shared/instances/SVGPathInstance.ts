@@ -19,8 +19,8 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 export class SVGPathInstance extends SVGInstance {
 
-  constructor() {
-    super("path");
+  constructor(_parent?: SVGInstance) {
+    super("path", _parent);
   }
 
 

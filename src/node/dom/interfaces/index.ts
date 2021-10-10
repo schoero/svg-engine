@@ -7,6 +7,9 @@ import { SVGPathElement } from "../elements/SVGPathElement";
 import { SVGTextElement } from "../elements/SVGTextElement";
 import { SVGLineElement } from "../elements/SVGLineElement";
 import { SVGTSpanElement } from "../elements/SVGTSpanElement";
+import { SVGDefsElement } from "../elements/SVGDefsElement";
+import { SVGLinearGradientElement } from "../elements/SVGLinearGradientElement";
+import { SVGStopElement } from "../elements/SVGStopElement";
 
 export interface SVGElementMap {
   "circle": SVGCircleElement;
@@ -17,4 +20,7 @@ export interface SVGElementMap {
   "text": SVGTextElement;
   "tspan": SVGTSpanElement;
   "svg": SVGSVGElement;
+  "defs": SVGDefsElement;
+  "linearGradient": SVGLinearGradientElement;
+  "stop": SVGStopElement;
 }
