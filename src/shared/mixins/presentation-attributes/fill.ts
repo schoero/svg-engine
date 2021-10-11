@@ -1,4 +1,5 @@
 import { SVGInstance } from "@instance/SVGInstance.js";
+import { SVGDefsInstance } from "../../instances/SVGDefsInstance.js";
 
 export class Fill extends SVGInstance {
 
@@ -41,6 +42,29 @@ export class Fill extends SVGInstance {
       return this;
     }
     return null;
+  }
+
+
+  public fillLinearGradient(gradient: Array<{ position: number | string, color: string }>, rotation?: number): this {
+
+    const defs = this.root?.childInstances.find(instance => instance.element.tagName === "defs") as SVGDefsInstance ?? this.root?.addDefs();
+    const linearGradient = defs?.addLinearGradient();
+
+    const id = defs.element.childNodes.length;
+    linearGradient.attr("id", "gradient-" + id);
+
+    if(typeof rotation === "number"){
+      linearGradient.attr("gradientTransform", "rotate(" + rotation + ")");
+    }
+
+    for(const stop of gradient){
+      linearGradient.addStop(stop.position, stop.color);
+    }
+
+    this.attr("fill", "url(#gradient-" + id + ")");
+
+    return this;
+
   }
 
 }

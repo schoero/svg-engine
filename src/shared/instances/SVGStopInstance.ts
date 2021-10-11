@@ -14,29 +14,13 @@ import { Stroke } from "../mixins/presentation-attributes/stroke.js";
 import { VectorEffect } from "../mixins/presentation-attributes/vectorEffect.js";
 import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
-// Attributes
-import { XYPositioning } from "../mixins/attributes/xyPositioning.js";
-import { WidthHeight } from "../mixins/attributes/widthHeight.js";
-
 
 //-- Class
 
-export class SVGRectInstance extends SVGInstance {
+export class SVGStopInstance extends SVGInstance {
 
   constructor(_parent?: SVGInstance) {
-    super("rect", _parent);
-  }
-
-
-  public borderRadius(): string | number | null;
-  public borderRadius(radius: string | number): this;
-  public borderRadius(radius?: string | number): string | number | this | null {
-    if(typeof radius === "string" || typeof radius === "number"){
-      this.attr("rx", radius);
-      this.attr("ry", radius);
-      return this;
-    }
-    return this.attr("rx");
+    super("stop", _parent);
   }
 
 }
@@ -44,26 +28,22 @@ export class SVGRectInstance extends SVGInstance {
 
 //-- Apply mixins
 
-export interface SVGRectInstance extends SVGInstance,
+export interface SVGStopInstance extends SVGInstance,
   Color,
   Display,
   Fill,
   Opacity,
   Stroke,
   VectorEffect,
-  Visibility,
-  XYPositioning,
-  WidthHeight
+  Visibility
 {}
 
-applyMixins(SVGRectInstance, [
+applyMixins(SVGStopInstance, [
   Color,
   Display,
   Fill,
   Opacity,
   Stroke,
   VectorEffect,
-  Visibility,
-  XYPositioning,
-  WidthHeight
+  Visibility
 ]);

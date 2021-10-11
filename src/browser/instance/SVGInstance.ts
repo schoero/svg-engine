@@ -1,13 +1,31 @@
 import { createElement } from "../utils/createElement.js";
 import { convertNamedNodeMapToObject } from "../../shared/utils/functions.js";
+import { SVGSVGInstance } from "../../shared/instances/SVGSVGInstance.js";
 
 export class SVGInstance {
 
   public element: SVGElement;
   public childInstances: Array<SVGInstance> = [];
 
-  constructor(tagName: string) {
+  protected _parent?: SVGInstance;
+
+  constructor(tagName: string, _parent?: SVGInstance) {
     this.element = createElement(tagName);
+    this._parent = _parent;
+  }
+
+
+  public get parent(): SVGInstance | undefined {
+    return this._parent;
+  }
+
+
+  public get root(): SVGSVGInstance | undefined {
+    let parent = this._parent;
+    while(parent?.parent !== undefined){
+      parent = parent.parent;
+    }
+    return parent as unknown as SVGSVGInstance | undefined;
   }
 
 

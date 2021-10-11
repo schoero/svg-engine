@@ -27,8 +27,8 @@ import { Font } from "../mixins/style-attributes/font.js";
 
 export class SVGTSpanInstance extends SVGInstance {
 
-  constructor() {
-    super("tspan");
+  constructor(_parent?: SVGInstance) {
+    super("tspan", _parent);
   }
 
 
@@ -36,7 +36,7 @@ export class SVGTSpanInstance extends SVGInstance {
   public addTSpan(text: string): SVGTSpanInstance;
   public addTSpan(x: number | string, y: number | string, text: string): SVGTSpanInstance;
   public addTSpan(xOrTextOrUndefined?: string | number, yOrUndefined?: string | number, textOrUndefined?: string): SVGTSpanInstance {
-    const text = new SVGTSpanInstance();
+    const text = new SVGTSpanInstance(this);
     if(typeof xOrTextOrUndefined === "string" && typeof yOrUndefined === "undefined"){
       text.text(xOrTextOrUndefined);
     } else if((typeof xOrTextOrUndefined === "string" || typeof xOrTextOrUndefined === "number") && (typeof yOrUndefined === "string" || typeof yOrUndefined === "number")){

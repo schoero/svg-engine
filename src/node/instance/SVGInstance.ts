@@ -2,14 +2,32 @@ import { createElement } from "../utils/createElement.js";
 import { SVGElement } from "../dom/elements/SVGElement.js";
 import { SVGElementMap } from "../dom/interfaces";
 import { convertNamedNodeMapToObject } from "../../shared/utils/functions.js";
+import { SVGSVGInstance } from "../../shared/instances/SVGSVGInstance";
 
 export class SVGInstance {
 
   public element: SVGElementMap[keyof SVGElementMap] | SVGElement;
   public childInstances: Array<SVGInstance> = [];
 
-  constructor(tagName: keyof SVGElementMap) {
+  protected _parent?: SVGInstance;
+
+  constructor(tagName: keyof SVGElementMap, _parent?: SVGInstance) {
     this.element = createElement(tagName);
+    this._parent = _parent;
+  }
+
+
+  public get parent(): SVGInstance | undefined {
+    return this._parent;
+  }
+
+
+  public get root(): SVGSVGInstance | undefined  {
+    let parent = this._parent;
+    while(parent?.parent !== undefined){
+      parent = parent.parent;
+    }
+    return parent as SVGSVGInstance | undefined;
   }
 
 

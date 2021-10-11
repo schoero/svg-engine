@@ -19,8 +19,8 @@ import { Visibility } from "../mixins/presentation-attributes/visibility.js";
 
 export class SVGLineInstance extends SVGInstance {
 
-  constructor() {
-    super("line");
+  constructor(_parent?: SVGInstance) {
+    super("line", _parent);
   }
 
 

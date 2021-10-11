@@ -5,7 +5,7 @@ import { SVGGroupInstance } from "../../instances/SVGGroupInstance.js";
 export class StructuralInstances extends SVGInstance {
 
   public addGroup(): SVGGroupInstance {
-    const group = new SVGGroupInstance();
+    const group = new SVGGroupInstance(this);
     this.appendInstance(group);
     return group;
   }

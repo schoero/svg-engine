@@ -7,6 +7,8 @@ import { applyMixins } from "../mixins/index.js";
 
 // Permitted content
 import { ShapeInstances } from "../mixins/permitted-content/shapeInstances.js";
+import { StructuralInstances } from "../mixins/permitted-content/structuralInstances.js";
+import { DescriptiveInstances } from "../mixins/permitted-content/descriptiveInstances.js";
 import { SVGGroupInstance } from "./SVGGroupInstance.js";
 
 // Presentation attributes
@@ -29,15 +31,18 @@ import { WidthHeight } from "../mixins/attributes/widthHeight.js";
 export class SVGSVGInstance extends SVGInstance {
 
   constructor();
-  constructor(width: string | number, height: string | number);
-  constructor(width?: string | number, height?: string | number) {
+  constructor(_parent?: SVGInstance);
+  constructor(width: string | number, height: string | number, _parent?: SVGInstance);
+  constructor(widthOrParent?: string | number | SVGInstance, height?: string | number, _parent?: SVGInstance) {
+
+    // const parent = widthOrParent instanceof SVGInstance ? widthOrParent : _parent;
 
     super("svg");
 
-    if(typeof width !== "undefined"){
-      this.width(width);
+    if(typeof widthOrParent === "string" || typeof widthOrParent === "number"){
+      this.width(widthOrParent);
     }
-    if(typeof height !== "undefined"){
+    if(typeof height === "string" || typeof height === "number"){
       this.height(height);
     }
 
@@ -45,7 +50,7 @@ export class SVGSVGInstance extends SVGInstance {
 
 
   public addGroup(): SVGGroupInstance {
-    const group = new SVGGroupInstance();
+    const group = new SVGGroupInstance(this);
     this.appendInstance(group);
     return group;
   }
@@ -99,6 +104,8 @@ export class SVGSVGInstance extends SVGInstance {
 
 export interface SVGSVGInstance extends SVGInstance,
   ShapeInstances,
+  StructuralInstances,
+  DescriptiveInstances,
   Color,
   Display,
   Fill,
@@ -113,6 +120,8 @@ export interface SVGSVGInstance extends SVGInstance,
 
 applyMixins(SVGSVGInstance, [
   ShapeInstances,
+  StructuralInstances,
+  DescriptiveInstances,
   Color,
   Display,
   Fill,
