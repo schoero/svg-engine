@@ -1,6 +1,6 @@
 {
   "name": "svg-engine",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Create SVG files in Node.js",
   "main": "./lib/node/cjs/index.js",
   "module": "./lib/node/esm/index.js",
@@ -74,12 +74,12 @@
   },
   "homepage": "https://github.com/schoero/svg-engine#readme",
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.31.2",
-    "@typescript-eslint/parser": "^4.31.2",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
     "assert": "^2.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.0.0",
     "ts-patch": "^1.4.4",
-    "typescript": "^4.4.3",
+    "typescript": "^4.4.4",
     "typescript-transform-paths": "^3.3.1"
   }
 }
