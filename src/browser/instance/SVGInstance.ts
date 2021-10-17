@@ -9,7 +9,7 @@ export class SVGInstance {
 
   protected _parent?: SVGInstance;
 
-  constructor(tagName: string, _parent?: SVGInstance) {
+  constructor(tagName: keyof SVGElementTagNameMap, _parent?: SVGInstance) {
     this.element = createElement(tagName);
     this._parent = _parent;
   }
