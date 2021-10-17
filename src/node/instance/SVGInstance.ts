@@ -59,6 +59,12 @@ export class SVGInstance {
   }
 
 
+  public empty(): this {
+    this.childInstances = [];
+    return this;
+  }
+
+
   public addClass(className: string): this;
   public addClass(classNames: Array<string>): this;
   public addClass(classNameOrClassNames: string | Array<string>): this {
