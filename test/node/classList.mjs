@@ -13,5 +13,4 @@ assert.equal(rect.element.classList.contains("foo") && rect.element.classList.co
 assert.equal(rect.element.classList.contains("foo") && !rect.element.classList.contains("bar") && rect.element.classList.contains("baz"), true, "rect.element.classList.contains('foo') && !rect.element.classList.contains('bar') && rect.element.classList.contains('baz')");
 rect.element.classList.value = "test";
 assert.equal(rect.element.classList.contains("test"), true, "rect.element.classList.contains('test')");
-console.log(rect.element.classList.value);
 assert.equal(rect.element.classList.contains("foo"), false, "rect.element.classList.contains('foo')");
