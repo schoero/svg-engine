@@ -70,7 +70,7 @@ export class SVGInstance {
     if(typeof classNameOrClassNames === "string"){
       this.element.classList.add(classNameOrClassNames);
     } else if(Array.isArray(classNameOrClassNames)){
-      classNameOrClassNames.forEach(className => this.element.classList.add(className));
+      this.element.classList.add(...classNameOrClassNames);
     }
     return this;
   }
@@ -82,7 +82,7 @@ export class SVGInstance {
     if(typeof classNameOrClassNames === "string"){
       this.element.classList.remove(classNameOrClassNames);
     } else if(Array.isArray(classNameOrClassNames)){
-      classNameOrClassNames.forEach(className => this.element.classList.remove(className));
+      this.element.classList.remove(...classNameOrClassNames);
     }
     return this;
   }

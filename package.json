@@ -54,7 +54,7 @@
     "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json && tsc -p tsconfig.browser.esm.json && tsc -p tsconfig.browser.cjs.json",
     "postbuild": "sh fix-exports.sh",
     "prepare": "ts-patch install -s",
-    "test": "npm run build && node test/node/cjs.js && node test/node/esm.mjs && node test/node/matches.mjs"
+    "test": "npm run build && node test/node/cjs.js && node test/node/classList.mjs && node test/node/esm.mjs && node test/node/matches.mjs"
   },
   "files": [
     "lib"
