@@ -77,13 +77,13 @@
   },
   "homepage": "https://github.com/schoero/svg-engine#readme",
   "devDependencies": {
-    "@schoero/eslint-config": "^1.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.3.1",
-    "@typescript-eslint/parser": "^5.3.1",
+    "@schoero/eslint-config": "^1.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "assert": "^2.0.0",
-    "eslint": "^8.2.0",
+    "eslint": "^8.7.0",
     "ts-patch": "^2.0.1",
-    "typescript": "^4.4.4",
+    "typescript": "^4.5.5",
     "typescript-transform-paths": "^3.3.1"
   }
 }
