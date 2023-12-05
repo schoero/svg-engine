@@ -1,4 +1,4 @@
-import { SVGElement } from "../elements/SVGElement";
+import { SVGElement } from "../elements/SVGElement.js";
 
 let _parentNode: SVGElement;
 export default class Style extends Object {

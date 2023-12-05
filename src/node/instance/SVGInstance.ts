@@ -1,8 +1,8 @@
 import { createElement } from "../utils/createElement.js";
 import { SVGElement } from "../dom/elements/SVGElement.js";
-import { SVGElementMap } from "../dom/interfaces";
+import { SVGElementMap } from "../dom/interfaces/index.js";
 import { convertNamedNodeMapToObject } from "../../shared/utils/functions.js";
-import { SVGSVGInstance } from "../../shared/instances/SVGSVGInstance";
+import { SVGSVGInstance } from "../../shared/instances/SVGSVGInstance.js";
 
 export class SVGInstance {
 
@@ -22,7 +22,7 @@ export class SVGInstance {
   }
 
 
-  public get root(): SVGSVGInstance | undefined  {
+  public get root(): SVGSVGInstance | undefined {
     let parent = this._parent;
     while(parent?.parent !== undefined){
       parent = parent.parent;
@@ -94,18 +94,18 @@ export class SVGInstance {
   }
 
 
-  public attr(): { [key: string]: string | number };
-  public attr(attributeObject: { [key: string]: string | number }): this;
+  public attr(): { [key: string]: string | number; };
+  public attr(attributeObject: { [key: string]: string | number; }): this;
   public attr(attributeName: string): string | number | null;
-  public attr(attributeName: Array<string>): { [key: string]: string | number };
+  public attr(attributeName: Array<string>): { [key: string]: string | number; };
   public attr(attributeName: string, value: string | number): this;
   public attr(attributeName: string, value?: string | number): string | null | this;
-  public attr(attributeNameOrAttributeObjectOrUndefined?: string | Array<string> | { [key: string]: string | number }, valueOrUndefined?: string | number): this | string | number | { [key: string]: string | number } | null {
+  public attr(attributeNameOrAttributeObjectOrUndefined?: string | Array<string> | { [key: string]: string | number; }, valueOrUndefined?: string | number): this | string | number | { [key: string]: string | number; } | null {
 
 
     //-- Convert numeric strings to numbers
 
-    const attributes: { [key: string]: string | number } = Object.entries(convertNamedNodeMapToObject(this.element.attributes)).reduce((previous, [key, value]) => ({ ...previous, [value.name]: isNaN(+value.value) ? value.value : +value.value }), {});
+    const attributes: { [key: string]: string | number; } = Object.entries(convertNamedNodeMapToObject(this.element.attributes)).reduce((previous, [key, value]) => ({ ...previous, [value.name]: isNaN(+value.value) ? value.value : +value.value }), {});
 
     if(typeof attributeNameOrAttributeObjectOrUndefined === "undefined"){
       return attributes;

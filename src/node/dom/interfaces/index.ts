@@ -1,16 +1,15 @@
-import { SVGSVGElement } from "../elements/SVGSVGElement";
-import { SVGElement } from "../elements/SVGElement";
-import { SVGCircleElement } from "../elements/SVGCircleElement";
-import { SVGRectElement } from "../elements/SVGRectElement";
-import { SVGGroupElement } from "../elements/SVGGroupElement";
-import { SVGPathElement } from "../elements/SVGPathElement";
-import { SVGTextElement } from "../elements/SVGTextElement";
-import { SVGLineElement } from "../elements/SVGLineElement";
-import { SVGTSpanElement } from "../elements/SVGTSpanElement";
-import { SVGDefsElement } from "../elements/SVGDefsElement";
-import { SVGLinearGradientElement } from "../elements/SVGLinearGradientElement";
-import { SVGRadialGradientElement } from "../elements/SVGRadialGradientElement";
-import { SVGStopElement } from "../elements/SVGStopElement";
+import { SVGSVGElement } from "../elements/SVGSVGElement.js";
+import { SVGCircleElement } from "../elements/SVGCircleElement.js";
+import { SVGRectElement } from "../elements/SVGRectElement.js";
+import { SVGGroupElement } from "../elements/SVGGroupElement.js";
+import { SVGPathElement } from "../elements/SVGPathElement.js";
+import { SVGTextElement } from "../elements/SVGTextElement.js";
+import { SVGLineElement } from "../elements/SVGLineElement.js";
+import { SVGTSpanElement } from "../elements/SVGTSpanElement.js";
+import { SVGDefsElement } from "../elements/SVGDefsElement.js";
+import { SVGLinearGradientElement } from "../elements/SVGLinearGradientElement.js";
+import { SVGRadialGradientElement } from "../elements/SVGRadialGradientElement.js";
+import { SVGStopElement } from "../elements/SVGStopElement.js";
 
 export interface SVGElementMap {
   "circle": SVGCircleElement;
